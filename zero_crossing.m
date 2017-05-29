@@ -6,4 +6,4 @@ function [ zero ] = zero_crossing( x )
         zero= zero + 1/2 * abs( sign(x(i)) - sign(x(i-1)) );
     end
 end
-
+%Comentario de prueba
