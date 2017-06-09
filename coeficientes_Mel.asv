@@ -1,4 +1,4 @@
-function [Coeficientes] = coeficientes_Mel (x, Fm)
+function [filtro] = coeficientes_Mel (x, Fm)
 X=fft(x);
 
 % Se va a usar un banco de 26 filros
@@ -55,6 +55,4 @@ for i=1 : length(Coeficientes)
     Coeficientes(i)= filtro(i,:)* abs(X);
 end
 
-%Necesito solamente los 5 primeros coef segun el paper
-Coeficientes = Coeficientes(1:5);
 end
