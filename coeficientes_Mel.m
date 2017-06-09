@@ -1,5 +1,4 @@
-function [Coeficientes] = coeficientes_Mel (x, Fm)
-X=fft(x);
+function [Coeficientes] = coeficientes_Mel (X, Fm)
 
 % Se va a usar un banco de 26 filros
 % El rango de frecuencia a filtrar es de 300 Hz a 10 KHz
@@ -27,7 +26,7 @@ f=floor((length(X)+1)*centrosHz/Fm);
 % Calculo los fitros, estan ordenados en una matriz por fila
 
 filtro=zeros(26,length(X));
-hold on;
+
 for m=2 : 27 %recorre las filas / filtros
     for k=1 : length(X) %recorre las columnas
         if ( k < f(m-1) )
@@ -40,19 +39,16 @@ for m=2 : 27 %recorre las filas / filtros
             filtro(m,k)= 0;
         end
     end
-    plot(filtro(m,:));
 end
 
 filtro = filtro (3:end,:); % le saco las primeras 2 filas que no tienen info
 
 X = X/max(X); %Normalizo
 
-plot(abs(X));
-
 Coeficientes = zeros(1,23);
 
 for i=1 : length(Coeficientes)
-    Coeficientes(i)= filtro(i,:)* abs(X);
+    Coeficientes(i)= filtro(i,:)* abs(X)';
 end
 
 %Necesito solamente los 5 primeros coef segun el paper

@@ -5,12 +5,12 @@
 function [m_sF,v_sF,m_sR,v_sR,m_cE,v_cE,m_zC,v_zC,m_cM,v_cM] = extraerCaract(cancion,tamVent,paso,fm)
     %{
     Lista de elementos que devuelve la funcion
-    m_sF media flujo espectral
-    v_sF varianza flujo espectral
-    m_sR media rol off
-    v_sR varianza rol off
-    m_cE media centroide espectral
-    v_cE varianza centroide espectral
+    m_sF media 
+    v_sF varianza
+    m_sR media
+    v_sR varianza
+    m_cE media
+    v_cE varianza
     m_zC media de la cantidad de cruces por cero
     v_zC varianza de la cantidad de cruces por cero
     m_cM VECTOR de medias de los coeficientes de Mel ordenados por fila
@@ -24,7 +24,6 @@ function [m_sF,v_sF,m_sR,v_sR,m_cE,v_cE,m_zC,v_zC,m_cM,v_cM] = extraerCaract(can
 	tdf_v = ventana;
 
 	for i=1:cant_frames
-        fprintf(strcat(int2str(i),'- ', int2str(cant_frames), '\n'));
 		ventana(i,:) = H.*(cancion(posAct:posAct+tamVent-1))';
 		tdf_v(i,:) = abs(fft(ventana(i,:)));
 		posAct = posAct + paso;
@@ -36,10 +35,10 @@ function [m_sF,v_sF,m_sR,v_sR,m_cE,v_cE,m_zC,v_zC,m_cM,v_cM] = extraerCaract(can
 	v_sF = var(sF);	
     
     %inicializo vectores con cero
-    m_sRol = zeros(1,cant_frames);
-	cE = zeros(1,cant_frames);
-	zC = zeros(1,cant_frames);
-    cM = zeros(cant_frames,5);
+    m_sRol = zero(1,cant_frames);
+	cE(i) = zero(1,cant_frames);
+	zC(i) = zero(1,cant_frames);
+    cM(i,:) = zero(cant_frames,5);
 
 	for i=1:cant_frames %Para cada frame
 		m_sRol(i) = spRoloff(tdf_v(i,:)); %Spectral Roloff para el frame i
@@ -47,18 +46,13 @@ function [m_sF,v_sF,m_sR,v_sR,m_cE,v_cE,m_zC,v_zC,m_cM,v_cM] = extraerCaract(can
 		zC(i) = zero_crossing(ventana(i,:)); %Zero crossing de la señal en el fame i
         cM(i,:) = coeficientes_Mel (tdf_v(i,:), fm); %Coeficientes de Mel
     end
-        
+    
     m_sR = mean(m_sRol);%Media
 	v_sR = var(m_sRol);%Varianza
     m_cE = mean(cE);%Media
 	v_cE = var(cE);%Varianza
     m_zC = mean(zC);%Media
     v_zC = var(zC);%Varianza
-    
-    %inicializo con cero los vectores
-    m_cM = zeros(1,length(cM(1,:)));
-    v_cM = zeros(1,length(cM(1,:)));
-    
     for i=1:length(cM(1,:))
        m_cM(i) = mean(cM(:,i)); 
        v_cM(i) = var(cM(:,i)); 
