@@ -1,0 +1,2 @@
+Parámetros a variar:
+Tamaño de la ventana para MFCC: Ver si clasifica mejor o peor con un tamaño de ventana de diferente tamaño (definido arbitrariamente como 400).
