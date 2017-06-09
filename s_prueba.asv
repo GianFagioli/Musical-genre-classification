@@ -1,7 +1,0 @@
-[cancion, Fm] = audioread('song.wav'); %
-[cancion] = partes_senial (x, Fm) %extrae distintas partes de la cancion
-tamVent = 512; %Tamaño de la ventana
-paso = tamVent; %Overlap de ventanas: Si es igual al tamaño de la ventana no hay overlap
-
-[m_sF,v_sF,m_sR,v_sR,m_cE,v_cE,m_zC,v_zC] = extraerCaract(cancion,tamVent,paso,fs);
-
