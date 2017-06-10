@@ -22,10 +22,9 @@ function [m_sF,v_sF,m_sR,v_sR,m_cE,v_cE,m_zC,v_zC,m_cM,v_cM] = extraerCaract(can
 	posAct = 1;	
 	ventana = zeros(cant_frames,tamVent);
 	tdf_v = ventana;
-
 	for i=1:cant_frames
-        fprintf(strcat(int2str(i),'- ', int2str(cant_frames), '\n'));
-		ventana(i,:) = H.*(cancion(posAct:posAct+tamVent-1))';
+        %fprintf(strcat(int2str(length(cancion(posAct:posAct+tamVent-1))),'- ', int2str(cant_frames), '\n'));
+		ventana(i,:) = H.*(cancion(posAct:posAct+tamVent-1));
 		tdf_v(i,:) = abs(fft(ventana(i,:)));
 		posAct = posAct + paso;
 	end
