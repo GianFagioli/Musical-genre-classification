@@ -24,4 +24,3 @@ function [s] = partes_senial (x, Fm)
     
     s= [vector_t1 vector_t2 vector_t3];
 end
-    
