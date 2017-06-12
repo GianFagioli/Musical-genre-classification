@@ -64,6 +64,4 @@ function carac = extraerCaract(cancion,tamVent,paso,fm)
        m_cM(i) = mean(cM(:,i)); 
        v_cM(i) = var(cM(:,i)); 
     end
-    size(cM)
-    carac = [carac m_cM v_cM];
 end
