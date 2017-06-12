@@ -20,11 +20,12 @@ for k=1:3
     carac(i,:) = extraerCaract(s_cumbia,tamVent,paso,fm_cumbia(k,1));
 end
 
-etiqueta= [ 'clasico'; 'clasico'; 'clasico'; 'rap'; 'rap'; 'rap'; 'cumbia'; 'cumbia'; 'cumbia'];
+etiqueta= [ 'cla'; 'cla'; 'cla'; 'rap'; 'rap'; 'rap'; 'cum'; 'cum'; 'cum'];
 
 red = fitcdiscr(carac,etiqueta);
 
-[s_cumbia, fm_c] = audioread(strcat('Canciones/cumbia' , int2str(7),'_modificado.wav'));
+[s_cumbia, fm_c] = audioread(strcat('Canciones/clasico8_modificado.wav'));
 desconocido(1,:) = extraerCaract(s_cumbia,tamVent,paso,fm_c);
 
 resultado = predict (red, desconocido);
+fprintf (resultado);

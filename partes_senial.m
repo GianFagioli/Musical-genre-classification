@@ -18,9 +18,9 @@ function [s] = partes_senial (x, Fm)
     % Obtengo 3 vectores de 5 seg de duracion
     x5= 5*Fm; %cantidad de elementos para una duracion de 5 seg
     
-    vector_t1= x(x23 : x23+x5);    
-    vector_t2= x(x50 : x50+x5);
-    vector_t3= x(x73 : x73+x5);
+    vector_t1= x(x23 : x23+x5)';    
+    vector_t2= x(x50 : x50+x5)';
+    vector_t3= x(x73 : x73+x5)';
     
     s= [vector_t1 vector_t2 vector_t3];
 end
