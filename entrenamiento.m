@@ -1,4 +1,4 @@
-function [red,carac] = entrenamiento()
+function [red,carac,divi] = entrenamiento()
 
 tamVent = 1024; %Tamaño de la ventana
 paso = tamVent; %Overlap de ventanas: Si es igual al tamaño de la ventana no hay overlap
@@ -30,5 +30,8 @@ end
 
 etiqueta= [ 'cla'; 'cla'; 'cla';'cla'; 'cla'; 'cla';'cla'; 'cla'; 'rap'; 'rap'; 'rap';'rap'; 'rap'; 'rap';'rap'; 'rap'; 'fol'; 'fol'; 'fol';'fol'; 'fol'; 'fol';'fol'; 'fol'; 'reg'; 'reg'; 'reg'; 'reg'; 'reg'; 'reg'; 'reg'; 'reg';];
 
+%Normalizo por columnas y guardo los mayores de cada uno para luego dividir
+%en la etapa de prueba.
+[carac, divi] = normColumn(carac);
 
 red = fitcdiscr(carac,etiqueta);
