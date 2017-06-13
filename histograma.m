@@ -1,4 +1,14 @@
-function [A0, A1, RA, P1, P2, SUM] = histograma (audio, fm)
+%Calcula el histograma de beat (que evidencia la frecuencia de beats y
+%subbeats) en un tramo de la canción mediante la DWT. Una vez obtenido el
+%histograma se calculan las características basadas en
+%éste:
+%A0-A1: amplitudes relativas del primer y segundo pico del histograma. 
+%RA: Relación de la amplitud del segundo pico dividida por la amplitud del
+%primero. 
+%P1,P2: Período del primer y segundo pico en bpm. 
+% SUM: Suma de todo el histograma
+
+function [A0, A1, RA, P0, P1, SUM] = histograma (audio, fm)
 
 % limite de BPM buscados
 maxBPM=200;
@@ -7,7 +17,7 @@ minBPM=40;
 fmNueva=fm/2;
 
 %calcular 6 sub-bandas aplicando filtros en las bandas de Scheirer (200,
-%400, 800, 1600, 3200, 6400). Esto da 6 se�ales de la misma cantidad de
+%400, 800, 1600, 3200, 6400). Esto da 6 se�ales de la misma cantidad de
 %muestras de Fm/2 y los coeficientes del filtro pasa bajo (luego utilizados
 %para el calculo de las envolventes.
 

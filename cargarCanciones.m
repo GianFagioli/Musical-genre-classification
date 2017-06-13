@@ -1,7 +1,7 @@
-% Cargar las canciones en señales ya particionadas por fragmentos
+% Cargar las canciones en seï¿½ales ya particionadas por fragmentos
 
 % clasico
-clasico=zeros(11, 661503); %matriz, las filas son las señales de las canciones
+clasico=zeros(11, 661503); %matriz, las filas son las seï¿½ales de las canciones
 fm_clasico=clasico(11,1); %vector columna con las frecuencias de muestreo
 for i=1 : 11
     [s_clasico, fm_clasico(i,1)] = audioread(strcat('Canciones/clasico' , int2str(i),'.mp3'));
@@ -10,7 +10,7 @@ for i=1 : 11
 end
 
 % cumbia
-cumbia=zeros(11, 661503); %matriz, las filas son las señales de las canciones
+cumbia=zeros(11, 661503); %matriz, las filas son las seï¿½ales de las canciones
 fm_cumbia=cumbia(11,1); %vector columna con las frecuencias de muestreo
 for i=1 : 11
     [s_cumbia, fm_cumbia(i,1)] = audioread(strcat('Canciones/cumbia' , int2str(i),'.mp3'));
@@ -20,7 +20,7 @@ end
 
 
 % folklore
-folklore=zeros(12, 661503); %matriz, las filas son las señales de las canciones
+folklore=zeros(12, 661503); %matriz, las filas son las seï¿½ales de las canciones
 fm_folklore=folklore(12,1); %vector columna con las frecuencias de muestreo
 for i=1 : 12
     [s_folklore, fm_folklore(i,1)] = audioread(strcat('Canciones/folklore' , int2str(i),'.mp3'));
@@ -29,7 +29,7 @@ for i=1 : 12
 end
 
 % rap
-rap=zeros(12, 661503); %matriz, las filas son las señales de las canciones
+rap=zeros(12, 661503); %matriz, las filas son las seï¿½ales de las canciones
 fm_rap=rap(12,1); %vector columna con las frecuencias de muestreo
 for i=1 : 12
     [s_rap, fm_rap(i,1)] = audioread(strcat('Canciones/rap' , int2str(i),'.mp3'));
@@ -39,7 +39,7 @@ end
 
 
 % reggae
-reggae=zeros(11, 661503); %matriz, las filas son las señales de las canciones
+reggae=zeros(11, 661503); %matriz, las filas son las seï¿½ales de las canciones
 fm_reggae=reggae(11,1); %vector columna con las frecuencias de muestreo
 for i=1 : 11
     [s_reggae, fm_reggae(i,1)] = audioread(strcat('Canciones/reggae' , int2str(i),'.mp3'));
@@ -49,7 +49,7 @@ end
 
 
 % rock
-rock=zeros(12, 661503); %matriz, las filas son las señales de las canciones
+rock=zeros(12, 661503); %matriz, las filas son las seï¿½ales de las canciones
 fm_rock=rock(12,1); %vector columna con las frecuencias de muestreo
 for i=1 : 12
     [s_rock, fm_rock(i,1)] = audioread(strcat('Canciones/rock' , int2str(i),'.mp3'));

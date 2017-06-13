@@ -3,17 +3,18 @@ Extraer características:
 Parámetros: cancion (señal de la cancion completa), tamVent (tamaño de la ventana), paso (avance de la ventana), fs (frecuencia de la señal)
 Algunas características se calculan por ventanas y luego se toma la media y varianza
 
-Elementos que devuelve la funcion
-    m_sF media flujo espectral
-    v_sF varianza flujo espectral
-    m_sR media rol off
-    v_sR varianza rol off
-    m_cE media centroide espectral
-    v_cE varianza centroide espectral
-    m_zC media de la cantidad de cruces por cero
-    v_zC varianza de la cantidad de cruces por cero
-    m_cM VECTOR de medias de los coeficientes de Mel ordenados por fila
-    v_cM VECTOR de varianzas de los coeficientes de Mel ordenados por fila
+Elementos que devuelve la funcion en el vector carac
+    m_sF: media flujo espectral
+    v_sF: varianza flujo espectral
+    m_sR: media rol off
+    v_sR: varianza rol off
+    m_cE: media centroide espectral
+    v_cE: varianza centroide espectral
+    m_zC: media de la cantidad de cruces por cero
+    v_zC: varianza de la cantidad de cruces por cero
+    m_cM: Media de los primeros 5 coeficientes de Mel
+    v_cM: Varianza de los primeros 5 coeficientes de Mel
+    A0, A1, RA, P1, P2, SUM: Parámetros calculados del histograma de beat
 %}
 function carac = extraerCaract(cancion,tamVent,paso,fm)
     carac = zeros(0);
@@ -42,11 +43,11 @@ function carac = extraerCaract(cancion,tamVent,paso,fm)
 	zC = zeros(1,cant_frames);
     cM = zeros(cant_frames,5);
 
-	for i=1:cant_frames %Para cada frame
-		m_sRol(i) = spRoloff(tdf_v(i,:)); %Spectral Roloff para el frame i
-		cE(i) = centroide_espectral(tdf_v(i,:)); %Centroide Espectral para el frame i
-		zC(i) = zero_crossing(ventana(i,:)); %Zero crossing de la señal en el fame i
-        cM(i,:) = coeficientes_Mel (tdf_v(i,:), fm); %Coeficientes de Mel
+    for i=1:cant_frames %Para cada frame
+            m_sRol(i) = spRoloff(tdf_v(i,:)); %Spectral Roloff para el frame i
+            cE(i) = centroide_espectral(tdf_v(i,:)); %Centroide Espectral para el frame i
+            zC(i) = zero_crossing(ventana(i,:)); %Zero crossing de la señal en el fame i
+            cM(i,:) = coeficientes_Mel (tdf_v(i,:), fm); %Coeficientes de Mel
     end
         
     carac(end+1) = mean(m_sRol);%Media m_sR
@@ -64,6 +65,8 @@ function carac = extraerCaract(cancion,tamVent,paso,fm)
        m_cM(i) = mean(cM(:,i)); 
        v_cM(i) = var(cM(:,i)); 
     end
-    size(cM)
     carac = [carac m_cM v_cM];
+    
+    [A0, A1, RA, P1, P2, SUM] = histograma (cancion, fm);
+    carac = [carac A0, A1, RA, P1, P2, SUM];
 end

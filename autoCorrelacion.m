@@ -1,7 +1,7 @@
 function [envoCorrelacion]=autoCorrelacion(sumaEnvo, ampEnvoltorio, minBPM, maxBPM)
 
-posFin=ceil((60*ampEnvolorio)/minBPM);
-posInicio=ceil((60*ampEnvolorio)/maxBPM);
+posFin=ceil((60*ampEnvoltorio)/minBPM);
+posInicio=ceil((60*ampEnvoltorio)/maxBPM);
 
 totalMuestra = length(sumaEnvo) - posFin;
 

@@ -1,5 +1,14 @@
-%Spectral Flux: El flujo espectral es una medida de cuan rápido cambia el espectro de la señal, comparando el espectro de un período con  el espectro anterior, más precisamente, es la norma 2 entre los dos espectros normalizados. Es usado para determinar el timbre de una señal de audio.
-%Esto se calcula luego de tener las transformadas de todas las ventanas, entonces para cada par de ventanas se calcula el flujo en Ft(i). En tr_f tengo las transformadas de cada ventana de la señal, por lo tanto, normalizo cada transformada y comparo ventana a ventana (sus transformadas), haciendo la sumatoria del cuadrado de la diferencia.
+%{
+Spectral Flux: El flujo espectral es una medida de cuan rápido cambia el 
+espectro de la señal, comparando el espectro de un período con  el espectro 
+anterior, más precisamente, es la norma 2 entre los dos espectros normaliza-
+dos. Es usado para determinar el timbre de una señal de audio.
+Esto se calcula luego de tener las transformadas de todas las ventanas, en-
+tonces para cada par de ventanas se calcula el flujo en Ft(i). En tr_f ten-
+go las transformadas de cada ventana de la señal, por lo tanto, normalizo 
+cada transformada y comparo ventana a ventana (sus transformadas), haciendo
+la sumatoria del cuadrado de la diferencia.
+%}
 function Ft = spFlux(tr_f)
 	%Normalizo las transformadas: Divido cada fila (en val abs) por el maximo.
 	vn_stft = zeros(size(tr_f));

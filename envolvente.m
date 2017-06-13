@@ -1,10 +1,9 @@
 function [sEnvolvente]=envolvente(sBanda, fmNueva, numFiltro, denFiltro)
-
 %rectificacion de onda completa
 sBanda=abs(sBanda);
 
 %filtro pasa bajo
-sFiltada=filtfilt(nunFiltro, denFiltro, sBanda);
+sFiltrada = filtfilt(numFiltro, denFiltro, sBanda);
 
 %sub-muestreo
 sFiltrada = sFiltrada(1:2:end);
@@ -18,5 +17,4 @@ Nw = Tw * fmNueva;
 w=ones(Nw,1)/Nw;
 
 sEnvolvente = conv(sFiltrada, w, 'same');
-
 end
