@@ -39,12 +39,12 @@ envo6=envolvente(sBanda6, fmNueva, numFiltro6, denFiltro6);
 
 %se submuestrean a 250hz las envolventes, para aumentar el rendimiento del
 %algoritmo de la autocorrelacion
-envo1=envo1(1:floor(250*fm/2):end);
-envo2=envo2(1:floor(250*fm/2):end);
-envo3=envo3(1:floor(250*fm/2):end);
-envo4=envo4(1:floor(250*fm/2):end);
-envo5=envo5(1:floor(250*fm/2):end);
-envo6=envo6(1:floor(250*fm/2):end);
+envo1=envo1(1:floor(fm/(2*250)):end);
+envo2=envo2(1:floor(fm/(2*250)):end);
+envo3=envo3(1:floor(fm/(2*250)):end);
+envo4=envo4(1:floor(fm/(2*250)):end);
+envo5=envo5(1:floor(fm/(2*250)):end);
+envo6=envo6(1:floor(fm/(2*250)):end);
 
 %Al tener todos envoltorios de la misma longitud para cada banda de
 %frecuencia se pueden sumar directamente

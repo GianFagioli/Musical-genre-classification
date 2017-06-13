@@ -10,7 +10,7 @@ envoCorrelacion = zeros (posFin, 1);
 for pos=posInicio:posFin
     sum = 0;
     for i=1 : totalMuestra
-        sum = sum + (sumaEnvoltorio(i) * sumaEnvoltorio(i+pos));
+        sum = sum + (sumaEnvo(i) * sumaEnvo(i+pos));
     end
     envoCorrelacion(pos)= envoCorrelacion(pos)+sum;
 end
