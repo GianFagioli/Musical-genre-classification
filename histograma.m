@@ -22,21 +22,44 @@ fmNueva=fm/2;
 %para el calculo de las envolventes.
 
 [sBanda1, numFiltro1, denFiltro1] = subBandaDWT (audio, fm, 1, 200);
+subplot(3,2,1);
+plot(sBanda1);
 [sBanda2, numFiltro2, denFiltro2] = subBandaDWT (audio, fm, 200, 400);
+subplot(3,2,2);
+plot(sBanda2);
 [sBanda3, numFiltro3, denFiltro3] = subBandaDWT (audio, fm, 400, 800);
+subplot(3,2,3);
+plot(sBanda3);
 [sBanda4, numFiltro4, denFiltro4] = subBandaDWT (audio, fm, 800, 1600);
+subplot(3,2,4);
+plot(sBanda4);
 [sBanda5, numFiltro5, denFiltro5] = subBandaDWT (audio, fm, 1600, 3200);
+subplot(3,2,5);
+plot(sBanda5);
 [sBanda6, numFiltro6, denFiltro6] = subBandaDWT (audio, fm, 3200, 6400);
-
+subplot(3,2,6);
+plot(sBanda6);
+figure();
 %construir las envolventes para cada sub-banda. procesamiento para cada
 %sub-banda
 envo1=envolvente(sBanda1, fmNueva, numFiltro1, denFiltro1);
+subplot(3,2,1);
+plot(envo1);
 envo2=envolvente(sBanda2, fmNueva, numFiltro2, denFiltro2);
+subplot(3,2,2);
+plot(envo2);
 envo3=envolvente(sBanda3, fmNueva, numFiltro3, denFiltro3);
+subplot(3,2,3);
+plot(envo3);
 envo4=envolvente(sBanda4, fmNueva, numFiltro4, denFiltro4);
+subplot(3,2,4);
+plot(envo4);
 envo5=envolvente(sBanda5, fmNueva, numFiltro5, denFiltro5);
+subplot(3,2,5);
+plot(envo5);
 envo6=envolvente(sBanda6, fmNueva, numFiltro6, denFiltro6);
-
+subplot(3,2,6);
+plot(envo6);
 %se submuestrean a 250hz las envolventes, para aumentar el rendimiento del
 %algoritmo de la autocorrelacion
 envo1=envo1(1:floor(250*fm/2):end);
