@@ -9,14 +9,16 @@ nomCanciones = ls ('Canciones/*.wav');
 %inicializo la matriz de caracteristicas
 carac=zeros(length(nomCanciones(:,1)),24);
 
+%extraigo las caracteristicas
 for i=1:length(nomCanciones(:,1))
     [cancion, fm_cancion] = audioread(strcat('Canciones/',nomCanciones(i,:)));
     carac(i,:) = extraerCaract(cancion,tamVent,paso,fm_cancion);
-    etiquetas(i) = cellstr(nomCanciones(i,(1:3)));
+    etiquetas(i) = char(cellstr(nomCanciones(i,(1:3))));
+    
 end
 
 %Normalizo por columnas y guardo los mayores de cada uno para luego dividir
 %en la etapa de prueba.
 [carac, divi] = normColumn(carac);
 
-red = fitcdiscr(carac,char(etiqueta));
+red = fitcdiscr(carac,char(etiquetas));
