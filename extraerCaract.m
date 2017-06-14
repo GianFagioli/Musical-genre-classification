@@ -67,6 +67,6 @@ function carac = extraerCaract(cancion,tamVent,paso,fm)
     end
     carac = [carac m_cM v_cM];
     
-    [A0, A1, RA, P1, P2, SUM] = histograma (cancion, fm);
+    [A0, A1, RA, P1, P2, SUM] = histogramaDWT (cancion, fm);
     carac = [carac A0, A1, RA, P1, P2, SUM];
 end

@@ -8,7 +8,7 @@
 %P1,P2: Período del primer y segundo pico en bpm. 
 % SUM: Suma de todo el histograma
 
-function [A0, A1, RA, P0, P1, SUM] = histograma (audio, fm)
+function [A0, A1, RA, P0, P1, SUM] = histogramaDWT (audio, fm)
 
 % limite de BPM buscados
 maxBPM=200;
@@ -16,26 +16,33 @@ minBPM=40;
 
 fmNueva=fm/2;
 
-%calcular 6 sub-bandas aplicando filtros en las bandas de Scheirer (200,
-%400, 800, 1600, 3200, 6400). Esto da 6 se�ales de la misma cantidad de
-%muestras de Fm/2 y los coeficientes del filtro pasa bajo (luego utilizados
-%para el calculo de las envolventes.
+%calcular 6 sub-bandas aplicando la transformada Wavelet con 6 niveles
+nBandas = 6;
+[C,L] = wavedec(audio,nBandas,'db4');
+sBanda1 = upsample(C(L(2):L(3)),64);
+sBanda2 = upsample(C(L(2):L(3)),32);
+sBanda3 = upsample(C(L(2):L(3)),16);
+sBanda4 = upsample(C(L(2):L(3)),8);
+sBanda5 = upsample(C(L(2):L(3)),4);
+sBanda6 = upsample(C(L(2):L(3)),2);
 
-[sBanda1, numFiltro1, denFiltro1] = subBandaDWT (audio, fm, 1, 200);
-[sBanda2, numFiltro2, denFiltro2] = subBandaDWT (audio, fm, 200, 400);
-[sBanda3, numFiltro3, denFiltro3] = subBandaDWT (audio, fm, 400, 800);
-[sBanda4, numFiltro4, denFiltro4] = subBandaDWT (audio, fm, 800, 1600);
-[sBanda5, numFiltro5, denFiltro5] = subBandaDWT (audio, fm, 1600, 3200);
-[sBanda6, numFiltro6, denFiltro6] = subBandaDWT (audio, fm, 3200, 6400);
+maxLength = max([length(sBanda1), length(sBanda2), length(sBanda3), length(sBanda4), length(sBanda5), length(sBanda6)]);
+sBanda1(length(sBanda1)+1:maxLength) = 0;
+sBanda2(length(sBanda2)+1:maxLength) = 0;
+sBanda3(length(sBanda3)+1:maxLength) = 0;
+sBanda4(length(sBanda4)+1:maxLength) = 0;
+sBanda5(length(sBanda5)+1:maxLength) = 0;
+sBanda6(length(sBanda6)+1:maxLength) = 0;
 
 %construir las envolventes para cada sub-banda. procesamiento para cada
 %sub-banda
-envo1=envolvente(sBanda1, fmNueva, numFiltro1, denFiltro1);
-envo2=envolvente(sBanda2, fmNueva, numFiltro2, denFiltro2);
-envo3=envolvente(sBanda3, fmNueva, numFiltro3, denFiltro3);
-envo4=envolvente(sBanda4, fmNueva, numFiltro4, denFiltro4);
-envo5=envolvente(sBanda5, fmNueva, numFiltro5, denFiltro5);
-envo6=envolvente(sBanda6, fmNueva, numFiltro6, denFiltro6);
+envo1= envolventeDWT(sBanda1);
+envo2= envolventeDWT(sBanda2);
+envo3= envolventeDWT(sBanda3);
+envo4= envolventeDWT(sBanda4);
+envo5= envolventeDWT(sBanda5);
+envo6= envolventeDWT(sBanda6);
+
 %se submuestrean a 250hz las envolventes, para aumentar el rendimiento del
 %algoritmo de la autocorrelacion
 envo1=envo1(1:floor(fm/(2*250)):end);
