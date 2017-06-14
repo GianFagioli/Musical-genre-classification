@@ -65,10 +65,10 @@ if (isempty(A0))
     P1=0;
 elseif (length(A0) == 1)
     A0 = A0(1)/SUM;
-    A1=0;
-    RA=0;
+    A1=A0;
+    RA=1;
     P0=pos(1);
-    P1=0;
+    P1=P0;
 else
     A1 = A0(2)/SUM;
     A0 = A0(1)/SUM;
@@ -76,6 +76,4 @@ else
     P0=pos(1);
     P1=pos(2);
 end
-
-
 end
