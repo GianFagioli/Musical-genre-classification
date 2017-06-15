@@ -15,8 +15,7 @@ centrosMel = (limInfMel:paso:limSupMel);
 
 
 
-%centrosHz = 700* (exp(centrosMel/1127.01048)-1); %trasnformo los centros
-%de los filtos de Mel a Hz
+%trasnformo los centros de los filtos de Mel a Hz
 centrosHz = 700* (exp(centrosMel/1127.01048)-1);
 
 % Se redondea la frecuencia de los filtros a la frecuencia de la FFT mas
