@@ -1,9 +1,4 @@
-﻿﻿Parámetros a variar:
--Tamaño de la ventana para MFCC: Ver si clasifica mejor o peor con un tamaño de ventana de diferente tamaño (definido arbitrariamente como 400).
--Tamaño de la ventana general , ahora esta en 1024
-
 Parámetros a variar:
 -Tamaño de la ventana para MFCC: Ver si clasifica mejor o peor con un tamaño de ventana de diferente tamaño (definido arbitrariamente como 400).
 
--Agregar las caracteristicas P1 y P2 del BH (Cuando obtenga bien los bpm, esto sería la posición en X del pico del histograma.)
 

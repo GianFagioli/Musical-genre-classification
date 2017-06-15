@@ -14,8 +14,6 @@ function [A0, A1, RA, P0, P1, SUM] = histogramaDWT (audio, fm)
 maxBPM=200;
 minBPM=40;
 
-fmNueva=fm/2;
-
 %calcular 6 sub-bandas aplicando la transformada Wavelet con 6 niveles
 nBandas = 6;
 [C,L] = wavedec(audio,nBandas,'db4');
