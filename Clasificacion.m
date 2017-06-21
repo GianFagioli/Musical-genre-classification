@@ -1,4 +1,4 @@
-function [] = Clasificacion(red, divi)
+function [MC,nomb] = Clasificacion(red, divi)
 
 tamVent = 512; %Tamaño de la ventana
 paso = tamVent; %Overlap de ventanas: Si es igual al tamaño de la ventana no hay overlap
@@ -24,7 +24,11 @@ for i=1:length(nomCanciones(:,1))
     if (etiqueta == resultado)
         aciertos = aciertos + 1;
     end
+    g1(i) = cellstr(etiqueta);
+    g2(i) = cellstr(resultado);
 end
 
 porcentajeAciertos = aciertos * 100 / i;
 fprintf(strcat('Porcentaje aciertos= ', int2str(porcentajeAciertos)));
+
+[MC,nomb] = confusionmat(g1,g2);
