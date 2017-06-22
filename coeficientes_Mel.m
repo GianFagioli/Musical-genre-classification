@@ -50,6 +50,9 @@ for i=1 : length(Coeficientes)
     Coeficientes(i)= filtro(i,:)* abs(X)';
 end
 
+Coeficientes=log (Coeficientes);
+Coeficientes=dct(Coeficientes);
+
 %Necesito solamente los 5 primeros coef segun el paper
 Coeficientes = Coeficientes(1:5);
 end
