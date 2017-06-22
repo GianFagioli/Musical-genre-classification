@@ -1,0 +1,9 @@
+\select@language {spanish}
+\beamer@sectionintoc {1}{Introducci\IeC {\'o}n}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{G\IeC {\'e}neros musicales}{3}{0}{1}
+\beamer@sectionintoc {2}{Extracci\IeC {\'o}n de Caracter\IeC {\'\i }sticas}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{Caracter\IeC {\'\i }sticas del Timbre}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Caracter\IeC {\'\i }sticas del Ritmo}{10}{0}{2}
+\beamer@sectionintoc {3}{Clasificaci\IeC {\'o}n}{15}{0}{3}
+\beamer@sectionintoc {4}{Resultados}{16}{0}{4}
+\beamer@sectionintoc {5}{Referencias}{17}{0}{5}
